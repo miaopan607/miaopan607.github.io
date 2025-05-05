@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>随机显示列表</title>
+	<script>
+		// 定义多组数据
+
+			const groups = [
+				{
+					name: "魔仙堡早安",
+					firstItem: "",
+					lastItem: "早上好（排名不分先后）",
+					middleItems: [
+						"一块融化的冰姐姐~", "听风~姐姐~", "娟娟姐姐~", "冷香茉姐姐~", "拾叁姐姐~", "Fairy姐姐~",
+						"毛线姐姐~", "火鱼姐姐~", "清雨姐姐！！", "柒姐姐~",
+						"差点姐姐~", "小叶姐姐~", "彦子姐姐~", "小延姐姐~",
+						"林酱姐姐~", "时雨莳羽诗馀姐姐~", "思思姐姐~", "Estrella姐姐~",
+						"晨宇姐姐~", "玖言姐姐~", "洛馨姐姐~", "小雪牲姐姐~",
+						"阿酒姐姐~", "墨衍姐姐~", "小满姐姐~", "小雪姐姐~",
+					]
+				},
+				{
+					name: "魔仙堡晚安",
+					firstItem: "睡觉觉晚安安",
+					lastItem: "拜拜💤（排名不分先后）",
+					middleItems: [
+						"一块融化的冰姐姐", "听风~姐姐", "娟娟姐姐", "冷香茉姐姐", "拾叁姐姐", "Fairy姐姐", "毛线姐姐",
+						"火鱼姐姐", "清雨姐姐！！", "柒姐姐", "差点姐姐", "小叶姐姐",
+						"彦子姐姐", "小延姐姐", "林酱姐姐", "时雨莳羽诗馀姐姐", "思思姐姐",
+						"Estrella姐姐", "晨宇姐姐", "玖言姐姐", "洛馨姐姐", "小雪牲姐姐",
+						"阿酒姐姐", "墨衍姐姐", "小满姐姐", "小雪姐姐",
+					]
+				},
+				{
+					name: "早安",
+					firstItem: "",
+					lastItem: "早上好（排名不分先后）",
+					middleItems: [
+						"听风~姐姐~", "娟娟姐姐~", "冷香茉姐姐~", "毛线姐姐~", "阿衍姐姐~",
+						"小雪姐姐~", "玖言姐姐~"
+					]
+				},
+				{
+					name: "晚安",
+					firstItem: "睡觉觉晚安安",
+					lastItem: "拜拜💤（排名不分先后）",
+					middleItems: [
+						"听风~姐姐", "娟娟姐姐", "冷香茉姐姐", "毛线姐姐",
+						"阿衍姐姐", "小雪姐姐", "玖言姐姐"
+					]
+				}
+			];
+
+
+		// 存储每个按钮的定时器
+		const buttonTimers = {};
+
+		// 随机打乱数组函数
+		function shuffleArray(array) {
+			for (let i = array.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[array[i], array[j]] = [array[j], array[i]];
+			}
+			return array;
+		}
+
+		// 复制文本到剪贴板并显示成功状态
+		function copyWithFeedback(button, text) {
+			const buttonId = button.id;
+
+			// 清除之前的定时器（如果存在）
+			if (buttonTimers[buttonId]) {
+				clearTimeout(buttonTimers[buttonId]);
+			}
+
+			// 保存原始文本
+			const originalText = button.textContent;
+
+			// 尝试复制文本
+			navigator.clipboard.writeText(text).catch(err => {
+				console.error("复制失败: ", err);
+			});
+
+			// 更新按钮文本为"复制成功"
+			button.textContent = "✓ 复制成功";
+
+			// 设置新的定时器，0.4秒后恢复原始文本
+			buttonTimers[buttonId] = setTimeout(() => {
+				button.textContent = originalText;
+				delete buttonTimers[buttonId];
+			}, 400);
+		}
+
+		// 显示所有组的随机列表
+		function displayAllRandomLists() {
+			const container = document.getElementById('groupsContainer');
+			container.innerHTML = '';
+
+			groups.forEach((group, index) => {
+				const shuffledMiddle = shuffleArray([...group.middleItems]);
+				const fullList = group.firstItem + shuffledMiddle.join('') + group.lastItem;
+
+				// 创建组容器
+				const groupDiv = document.createElement('div');
+				groupDiv.className = 'group-container';
+
+				// 创建标题和按钮容器
+				const titleContainer = document.createElement('div');
+				titleContainer.className = 'title-container';
+
+				// 创建组标题
+				const title = document.createElement('h3');
+				title.textContent = group.name;
+				titleContainer.appendChild(title);
+
+				// 创建按钮容器
+				const buttonsDiv = document.createElement('div');
+				buttonsDiv.className = 'buttons-container';
+
+				// 创建刷新按钮
+				const refreshBtn = document.createElement('button');
+				refreshBtn.textContent = '刷新';
+				refreshBtn.onclick = function () {
+					const newShuffled = shuffleArray([...group.middleItems]);
+					textSpan.textContent = group.firstItem + newShuffled.join('') + group.lastItem;
+				};
+				buttonsDiv.appendChild(refreshBtn);
+
+				// 创建复制按钮
+				const copyBtn = document.createElement('button');
+				copyBtn.id = `copyBtn${index}`; // 为按钮添加唯一ID
+				copyBtn.textContent = '复制';
+				copyBtn.onclick = function () {
+					copyWithFeedback(copyBtn, textSpan.textContent);
+				};
+				buttonsDiv.appendChild(copyBtn);
+
+				titleContainer.appendChild(buttonsDiv);
+				groupDiv.appendChild(titleContainer);
+
+				// 创建文本显示区域
+				const textSpan = document.createElement('span');
+				textSpan.id = `groupText${index}`;
+				textSpan.textContent = fullList;
+				groupDiv.appendChild(textSpan);
+
+				container.appendChild(groupDiv);
+			});
+		}
+
+		// 页面加载时显示所有组的随机列表
+		window.onload = displayAllRandomLists;
+	</script>
+	<style>
+		/* 简单样式使按钮和文字同行 */
+		.group-container {
+			margin-bottom: 20px;
+		}
+
+		.title-container {
+			display: flex;
+			align-items: center;
+			margin-bottom: 5px;
+		}
+
+		.buttons-container {
+			display: flex;
+			margin-left: 10px;
+		}
+
+		button {
+			margin-right: 5px;
+			cursor: pointer;
+			padding: 2px 8px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="groupsContainer"></div>
+</body>
+
+</html>
