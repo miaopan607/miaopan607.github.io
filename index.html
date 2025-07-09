@@ -2,55 +2,55 @@
 <html>
 
 <head>
-	<title>随机显示列表</title>
+	<title>早安喵</title>
 	<script>
 		// 定义多组数据
 
-			const groups = [
-				{
-					name: "魔仙堡早安",
-					firstItem: "",
-					lastItem: "早上好（排名不分先后）",
-					middleItems: [
-						"一块融化的冰姐姐~", "听风~姐姐~", "冷香茉姐姐~", "拾叁姐姐~", "Fairy姐姐？？",
-						"毛线姐姐~", "火鱼姐姐~", "清雨姐姐！！", "柒姐姐~", "园长姐姐~", "娟娟姐姐~",
-						"差点姐姐~", "小叶姐姐~", "彦子姐姐~", "小延姐姐~", "秋岁姐姐~",
-						"林酱姐姐~", "时雨莳羽诗馀姐姐~", "思思姐姐~", "洛雪姐姐~",
-						"晨宇姐姐~", "玖言姐姐~", "洛馨姐姐~", "小雪牲姐姐~",
-						"阿酒姐姐~", "墨衍姐姐~", "小满姐姐~", "小雪姐姐~",
-					]
-				},
-				{
-					name: "魔仙堡晚安",
-					firstItem: "睡觉觉晚安安",
-					lastItem: "拜拜💤（排名不分先后）",
-					middleItems: [
-						"一块融化的冰姐姐", "听风~姐姐", "冷香茉姐姐", "拾叁姐姐", "Fairy姐姐？？", "毛线姐姐",
-						"火鱼姐姐", "清雨姐姐！！", "柒姐姐", "差点姐姐", "小叶姐姐", "园长姐姐", "娟娟姐姐",
-						"彦子姐姐", "小延姐姐", "林酱姐姐", "时雨莳羽诗馀姐姐", "思思姐姐",
-						"晨宇姐姐", "玖言姐姐", "洛馨姐姐", "小雪牲姐姐", "洛雪姐姐",
-						"阿酒姐姐", "墨衍姐姐", "小满姐姐", "小雪姐姐", "秋岁姐姐"
-					]
-				},
-				{
-					name: "早安",
-					firstItem: "",
-					lastItem: "早上好（排名不分先后）",
-					middleItems: [
-						"听风~姐姐~", "冷香茉姐姐~", "毛线姐姐~", "阿衍姐姐~",
-						"小雪姐姐~", "玖言姐姐~", "娟娟姐姐~"
-					]
-				},
-				{
-					name: "晚安",
-					firstItem: "睡觉觉晚安安",
-					lastItem: "拜拜💤（排名不分先后）",
-					middleItems: [
-						"听风~姐姐", "冷香茉姐姐", "毛线姐姐", "娟娟姐姐",
-						"阿衍姐姐", "小雪姐姐", "玖言姐姐"
-					]
-				}
-			];
+		const groups = [
+			{
+				name: "魔仙堡早安",
+				firstItem: "",
+				lastItem: "早上好（排名不分先后）",
+				middleItems: [
+					"一块融化的冰姐姐~", "听风~姐姐~", "冷香茉姐姐~", "拾叁姐姐~", "Fairy姐姐~",
+					"毛线姐姐~", "火鱼姐姐~", "清雨姐姐", "柒姐姐~", "园长姐姐~", "娟娟姐姐~",
+					"差点姐姐~", "小叶姐姐~", "彦子姐姐~", "小延姐姐~", "秋岁姐姐~",
+					"林酱姐姐~", "时雨莳羽诗馀姐姐~", "思思姐姐~", "洛雪姐姐~",
+					"晨宇姐姐~", "玖言姐姐~", "洛馨姐姐~", "小雪牲姐姐~",
+					"阿酒姐姐~", "墨衍姐姐~", "小满姐姐~", "小雪姐姐~",
+				]
+			},
+			{
+				name: "魔仙堡晚安",
+				firstItem: "睡觉觉晚安安",
+				lastItem: "拜拜💤（排名不分先后）",
+				middleItems: [
+					"一块融化的冰姐姐", "听风~姐姐", "冷香茉姐姐", "拾叁姐姐", "Fairy姐姐", "毛线姐姐",
+					"火鱼姐姐", "清雨姐姐", "柒姐姐", "差点姐姐", "小叶姐姐", "园长姐姐", "娟娟姐姐",
+					"彦子姐姐", "小延姐姐", "林酱姐姐", "时雨莳羽诗馀姐姐", "思思姐姐",
+					"晨宇姐姐", "玖言姐姐", "洛馨姐姐", "小雪牲姐姐", "洛雪姐姐",
+					"阿酒姐姐", "墨衍姐姐", "小满姐姐", "小雪姐姐", "秋岁姐姐"
+				]
+			},
+			{
+				name: "早安",
+				firstItem: "",
+				lastItem: "早上好（排名不分先后）",
+				middleItems: [
+					"听风~姐姐~", "冷香茉姐姐~", "毛线姐姐~", "阿衍姐姐~",
+					"小雪姐姐~", "玖言姐姐~", "娟娟姐姐~"
+				]
+			},
+			{
+				name: "晚安",
+				firstItem: "睡觉觉晚安安",
+				lastItem: "拜拜💤（排名不分先后）",
+				middleItems: [
+					"听风~姐姐", "冷香茉姐姐", "毛线姐姐", "娟娟姐姐",
+					"阿衍姐姐", "小雪姐姐", "玖言姐姐"
+				]
+			}
+		];
 
 
 		// 存储每个按钮的定时器
@@ -173,6 +173,61 @@
 			margin-right: 5px;
 			cursor: pointer;
 			padding: 2px 8px;
+		}
+
+		body {
+			background-color: #1a1a1a;
+			color: #f0f0f0;
+			font-family: 'HarmonyOS Sans SC';
+		}
+
+		.group-container {
+			background-color: #2a2a2a;
+			padding: 15px;
+			border-radius: 8px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+		}
+
+		h3 {
+			color: #ff9e9e;
+			margin: 0;
+		}
+
+		button {
+			background-color: #3a3a3a;
+			color: #f0f0f0;
+			border: none;
+			border-radius: 4px;
+			padding: 6px 12px;
+			margin-left: 8px;
+			transition: background-color 0.3s;
+		}
+
+		button:hover {
+			background-color: #5a5a5a;
+		}
+
+		button:active {
+			background-color: #2a2a2a;
+		}
+
+		.buttons-container {
+			margin-left: auto;
+		}
+
+		.title-container {
+			margin-bottom: 10px;
+			padding-bottom: 8px;
+			border-bottom: 1px solid #444;
+		}
+
+		span[id^="groupText"] {
+			display: block;
+			padding: 10px;
+			background-color: #333;
+			border-radius: 4px;
+			white-space: pre-wrap;
+			min-height: 30px;
 		}
 	</style>
 </head>
